@@ -10,7 +10,7 @@ papersize: a4
 #     - heightrounded
 documentclass: article
 title: Distributed Programming report
-author: LAI Khang Duy - Lylia SOMETHINGHERE
+author: LAI Khang Duy - Lylia DJALI
 date: 29-01-2022
 titlepage: true
 toc-own-page: true
@@ -38,9 +38,13 @@ Please find the source code of the project here.
 # Présentation du projet
 The purpose of the project is to prove the concept of using multiple technologies for distributed programming. With this project, we have built a full web server with 2 backends, 1 frontend and 1 database to showcase the problems. 
 
+The application has 2 main functionalities. 
+1. Search and display the weather and the temperature of the place that user type in.
+2. When the user click record, the application will write the data to the database, and display them the next time user visit the website.
+
 Each of it is under a Docker container and defined to comunicate with each other using Docker Compose.
 
-The front end fetch from 2 backends with 2 independent tasks. 
+The front end fetch from 2 backends with 2 independent tasks, thus we deployed the concept of microservices.
 
 ![Show weather module](assets/images/show_weather_module.png)
 
@@ -55,13 +59,13 @@ Et pour cela nous avons créé une application qui affiche la température pour 
 # Introduction about the technology
 
 ## Django
-Django is a backend framework written in Python
+Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
 
 ## React.JS
-Please write some here
+ReactJS is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Facebook and a community of individual developers and companies. It is the most common frontend framework for building web application at the moment.
 
 ## PostgreSQL
-Please write some here
+PostgreSQL is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance. The reason we choose Postgres over other Database is that it is fully intergrated with Django. Furthermore, the official image of PostgreSQL on Dockerhub is very easy to deploy with out much modification.
 
 
 # Architecture de l’application
@@ -70,11 +74,31 @@ Pour expliquer le fonctionnement de notre application web, nous avons schématis
 ![Architecture de l’application](assets/images/program_architechture.png)
 
 
-Notre application web  utilisant le web service REST est composé de :
+```
+->project_final/
+  ->backend_record/
+  ->backend_weather/
+  ->frontend/
+  ->.gitignore
+  ->docker_compose.yml
+```
 
-- Un front end ( qui nous sert de navigateur) codé en REACT JS ,
-- Deux back end : un qui sert à stocker et à extraire les données depuis notre base donnée codé en python en utilisant DJANGO , le deuxième qui sert à récupérer la température d’une autre API codé en python en utilisant DJANGO 
-- Base de donnée POSTGRESQL
+
+
+Notre application web utilisant le web service REST est composé de :
+
+1. Un front end (qui nous sert de navigateur) codé en ReactJS.
+
+This will take the data from backend_weather and backend_record and display them to the screen for the user. 
+
+2. Deux back end (qui nous sert de navigateur) codé en Python.
+
+- Un qui sert à stocker et à extraire les données depuis notre base donnée codé en python en utilisant Django (backend_weather).
+- Le deuxième qui sert à récupérer la température d’une autre API codé en python en utilisant Django (backend_record). 
+3. Base de donnée PostgreSQL.
+- The backend_record will take the record from the moment user click the record button and write it in PostgreSQL.
+
+The SQLite from backend_weather is running in the same container with backend_weather to manage the admin task only.
 
 # Distributed programming used in the project
 
@@ -83,6 +107,8 @@ Les conteneurs fonctionnent un peu comme les VM, mais de manière beaucoup plus 
 	
 Dans notre application chaque application tourne et contenue dans un docker container,
 Ce qui permet une utilisation plus efficace des ressources du système, des cycles de livraison de logiciels plus rapides, mais surtout très efficace dans architecture micro-service telle que la nôtre.
+
+
 
 ## Docker compose
 Compose est un outil permettant de définir et d'exécuter des applications Docker multi-conteneurs. Avec Compose, on utilise un fichier YAML pour configurer les services de votre application. Ensuite, avec une seule commande, on crée et démarre tous les services à partir de notre configuration. 
