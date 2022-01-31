@@ -9,7 +9,7 @@ papersize: a4
 #     - right=20mm
 #     - heightrounded
 documentclass: article
-title: Distributed Programming report
+title: Rapport projet du module Programmation distiribuée
 author: LAI Khang Duy - Lylia DJALI
 date: 29-01-2022
 titlepage: true
@@ -30,42 +30,42 @@ Please find the link here
 
 - [LAI KHANG DUY](https://www.qwiklabs.com/public_profiles/b3802779-0893-4f19-a16a-f7e5309c3219)
 
-- [LYLIA](link)
+- [LYLIA DJALI](https://www.qwiklabs.com/public_profiles/d8f6c6b9-ecc2-44ae-8bda-78e65fc5874b)
 
-# Resource
-Please find the source code of the project here. 
+# Ressources :
+Le code source est disponisble dans le lien ci-dessous. 
 
 [**CLICK HERE**](https://github.com/laiduy98/project_programation_distribuee)
 
 # Présentation du projet
-The purpose of the project is to prove the concept of using multiple technologies for distributed programming. With this project, we have built a full web server with 2 backends, 1 frontend and 1 database to showcase the problems. 
+Le but de ce projet est de montrer le concept d'utilisation de plusieurs technologies pour la programmation distribuée. Avec ce projet, nous avons construit un serveur web complet avec 2 backends, 1 frontend et 1 base de données pour démontrer les problèmes. 
 
-The application has 2 main functionalities. 
-1. Search and display the weather and the temperature of the place that user type in.
-2. When the user click record, the application will write the data to the database, and display them the next time user visit the website.
+L'application a 2 fonctionnalités principales. 
+1. Rechercher et afficher la météo et la température de l'endroit que l'utilisateur saisit.
+2. Lorsque l'utilisateur clique sur record, l'application enregistre les données dans la base de données et les affiche la prochaine fois que l'utilisateur visite le site Web.
+
 
 ![Architecture de l’application](assets/images/program_architechture.png)
 
-Each of it is under a Docker container and defined to comunicate with each other using Docker Compose.
+Chacun service est placé dans un conteneur Docker , à l'aide de Docker Compose on définit la communication entre chaque service.
 
-The front end fetch from 2 backends with 2 independent tasks, thus we deployed the concept of microservices.
-
+Le front-end récupère les données de 2 backends avec 2 tâches indépendantes, nous avons donc déployé le concept de microservices.
 
 Notre projet consiste à réaliser une application web tout en utilisant les technologies acquises lors du cours Programmation distribuée.
 
 Et pour cela nous avons créé une application qui affiche la température pour n’importe quelle ville au monde ainsi qu’un enregistrement des températures précédentes récupéré depuis la base de données.
 
 
-# Introduction about the technology
+# Introduction technologies utilisées :
 
 ## Django
-Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
+Django est un framework web Python de haut niveau qui encourage le développement rapide et une conception propre et pragmatique. Conçu par des développeurs expérimentés, il prend en charge une grande partie des problèmes liés au développement Web, ce qui nous a permi  de nous concentrer sur la création de notre application sans avoir à réinventer la roue. Il est gratuit et open source
 
 ## React.JS
-ReactJS is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Facebook and a community of individual developers and companies. It is the most common frontend framework for building web application at the moment.
+ReactJS est une bibliothèque JavaScript frontale gratuite et open-source permettant de créer des interfaces utilisateur basées sur des composants UI. Elle est maintenue par Facebook et une communauté de développeurs individuels et d'entreprises. Il s'agit du cadre frontal le plus courant pour la création d'applications Web à l'heure actuelle.
 
 ## PostgreSQL
-PostgreSQL is a free and open-source relational database management system (RDBMS) emphasizing extensibility and SQL compliance. The reason we choose Postgres over other Database is that it is fully intergrated with Django. Furthermore, the official image of PostgreSQL on Dockerhub is very easy to deploy with out much modification.
+PostgreSQL est un système de gestion de base de données relationnelle (SGBDR) libre et gratuit qui met l'accent sur l'extensibilité et la conformité SQL. La raison pour laquelle nous avons choisi Postgres plutôt que d'autres bases de données est qu'il est entièrement intégré à Django. De plus, l'image officielle de PostgreSQL sur Dockerhub est très facile à déployer sans grande modification.
 
 
 # Architecture de l’application
@@ -87,7 +87,7 @@ Notre application web utilisant le web service REST est composé de :
 
 1. Un front end (qui nous sert de navigateur) codé en ReactJS.
 
-This will take the data from backend_weather and backend_record and display them to the screen for the user. 
+Ceci va prendre les données de backend_weather et backend_record et les afficher à l'écran pour l'utilisateur
 
 2. Deux back end (qui nous sert de navigateur) codé en Python.
 
@@ -99,12 +99,11 @@ This will take the data from backend_weather and backend_record and display them
 
 ![Show record module](assets/images/show_record_module.png)
 
-3. Base de donnée PostgreSQL.
-- The backend_record will take the record from the moment user click the record button and write it in PostgreSQL.
+ Le backend_record va prendre l'enregistrement du moment où l'utilisateur clique sur le bouton d'enregistrement et l'écrire dans PostgreSQL.
 
-The SQLite from backend_weather is running in the same container with backend_weather to manage the admin task only.
+ Le SQLite de backend_weather est exécuté dans le même conteneur que backend_weather pour gérer la tâche d'administration uniquement.
 
-# Distributed programming technologies used in the project
+# Technologies de programmation distibuée utilisés dans ce projet 
 
 ## Docker
 Les conteneurs fonctionnent un peu comme les VM, mais de manière beaucoup plus spécifique et granulaire. Ils isolent une seule application et ses dépendances - toutes les bibliothèques logicielles externes dont l'application a besoin pour fonctionner - à la fois du système d'exploitation sous-jacent et des autres conteneurs.
@@ -114,7 +113,7 @@ Ce qui permet une utilisation plus efficace des ressources du système, des cycl
 
 ![Architechture of Application on docker container](assets/images/docker_architechture.png)
 
-Each of the service defined by a Dockerfile which is the folder repository.
+chacun des services définis par un Dockerfile qui se trouve dans le dossier repository.
 
 
 ```
@@ -131,7 +130,7 @@ COPY . ./
 RUN ["python", "manage.py", "makemigrations" ]
 EXPOSE 8001
 ```
-Example of the Dockerfile of the Django services
+Exemple d'un Dockerfile des services Django
 
 ## Docker compose
 Compose est un outil permettant de définir et d'exécuter des applications Docker multi-conteneurs. Avec Compose, on utilise un fichier YAML pour configurer les services de votre application. Ensuite, avec une seule commande, on crée et démarre tous les services à partir de notre configuration. 
@@ -185,15 +184,15 @@ services:
       - django-record-weather-service
 ```
 
-As you can see, we have totally 4 services defined in the docker compose file
+Comme vous pouvez le voir, nous avons 4 services définis dans le fichier docker compose.
 
-The port of each services is exposed so we can check
+Le port de chaque service est exposé afin que nous puissions vérifier
 
 ## Kubernetes
 minikube est un outil qui nous permet d'exécuter Kubernetes localement. minikube exécute un cluster Kubernetes à un seul nœud sur notre ordinateur.
 Dans notre cas , comme on a utilisé minikube , tous nos conteneurs sont orchestrés par un  seul node.
 
-We use Kompose to translate the docker_compose.yml to Kurbernetes resources.
+On utilise Kompose pour traduire le docker_compose.yml vers un Kurbernetes resources.
 
 ```
 kompose convert -f docker-compose.yaml
