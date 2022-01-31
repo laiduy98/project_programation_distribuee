@@ -2,7 +2,7 @@
 # pandoc report_prog_dist.md -o pdf/report_prog_dist.pdf --from markdown --template eisvogel.tex --listings --pdf-engine=xelatex --toc --number-sections
 
 papersize: a4
-# lang: vi-VN
+lang: fr-FR
 # geometry:
 #     - top=30mm
 #     - left=20mm
@@ -67,6 +67,19 @@ ReactJS est une bibliothèque JavaScript frontale gratuite et open-source permet
 ## PostgreSQL
 PostgreSQL est un système de gestion de base de données relationnelle (SGBDR) libre et gratuit qui met l'accent sur l'extensibilité et la conformité SQL. La raison pour laquelle nous avons choisi Postgres plutôt que d'autres bases de données est qu'il est entièrement intégré à Django. De plus, l'image officielle de PostgreSQL sur Dockerhub est très facile à déployer sans grande modification.
 
+# Fonctionnalités
+
+- Recherchez le lieu et appuyez sur Entrée pour obtenir la météo et la température.
+
+![Search bar](assets/images/search_bar.png)
+
+- Enregistrez la recherche dans la base de données.
+
+![Record button](assets/images/record_button.png)
+
+- Supprimer la recherche de la base de données.
+
+![Delete button](assets/images/delete_button.png)
 
 # Architecture de l’application
 Pour expliquer le fonctionnement de notre application web, nous avons schématisé l’architecture logicielle de notre application comme on peut le voir sur la figure ci-dessous:
@@ -91,13 +104,13 @@ Ceci va prendre les données de backend_weather et backend_record et les affiche
 
 2. Deux back end (qui nous sert de navigateur) codé en Python.
 
-- Un qui sert à stocker et à extraire les données depuis notre base donnée codé en python en utilisant Django (backend_weather).
+- Un qui sert à récupérer la température d’une autre API codé en python en utilisant Django (backend_weather). 
 
-![Show weather module](assets/images/show_weather_module.png)
+![Module weather](assets/images/show_weather_module.png)
 
-- Le deuxième qui sert à récupérer la température d’une autre API codé en python en utilisant Django (backend_record). 
+- Le deuxième qui sert à stocker et à extraire les données depuis notre base donnée codé en python en utilisant Django (backend_record).
 
-![Show record module](assets/images/show_record_module.png)
+![Module record](assets/images/show_record_module.png)
 
  Le backend_record va prendre l'enregistrement du moment où l'utilisateur clique sur le bouton d'enregistrement et l'écrire dans PostgreSQL.
 
@@ -111,7 +124,7 @@ Les conteneurs fonctionnent un peu comme les VM, mais de manière beaucoup plus 
 Dans notre application chaque application tourne et contenue dans un docker container,
 Ce qui permet une utilisation plus efficace des ressources du système, des cycles de livraison de logiciels plus rapides, mais surtout très efficace dans architecture micro-service telle que la nôtre.
 
-![Architechture of Application on docker container](assets/images/docker_architechture.png)
+![Architecture d'application sur conteneur docker](assets/images/docker_architechture.png)
 
 chacun des services définis par un Dockerfile qui se trouve dans le dossier repository.
 
@@ -186,10 +199,14 @@ services:
 
 Comme vous pouvez le voir, nous avons 4 services définis dans le fichier docker compose.
 
-Le port de chaque service est exposé afin que nous puissions vérifier
+Le port de chaque service est exposé afin que nous puissions vérifier.
+
+## Microservice
+L'application a 2 backends. Ainsi, si 1 service est en panne, l'autre service fonctionne toujours.
+
 
 ## Kubernetes
-minikube est un outil qui nous permet d'exécuter Kubernetes localement. minikube exécute un cluster Kubernetes à un seul nœud sur notre ordinateur.
+Minikube est un outil qui nous permet d'exécuter Kubernetes localement. minikube exécute un cluster Kubernetes à un seul nœud sur notre ordinateur.
 Dans notre cas , comme on a utilisé minikube , tous nos conteneurs sont orchestrés par un  seul node.
 
 On utilise Kompose pour traduire le docker_compose.yml vers un Kurbernetes resources.
