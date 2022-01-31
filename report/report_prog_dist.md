@@ -9,8 +9,8 @@ papersize: a4
 #     - right=20mm
 #     - heightrounded
 documentclass: article
-title: Distributed Programming report
-author: LAI Khang Duy - Lylia SOMETHINGHERE
+title: Rapport Projet du module Programmation distribuée
+author: LAI Khang Duy - Lylia DJALI
 date: 29-01-2022
 titlepage: true
 toc-own-page: true
@@ -28,19 +28,19 @@ Please find the link here
 
 - [LAI KHANG DUY](https://www.qwiklabs.com/public_profiles/b3802779-0893-4f19-a16a-f7e5309c3219)
 
-- [LYLIA](link)
+- [LYLIA DJALI](https://www.qwiklabs.com/public_profiles/d8f6c6b9-ecc2-44ae-8bda-78e65fc5874b)
 
-# Resource
-Please find the source code of the project here. 
+# Ressource
+Cliquez ci-dessous pour visualiser le code source de notre projet cliq. 
 
 [**CLICK HERE**](https://github.com/laiduy98/project_programation_distribuee)
 
 # Présentation du projet
-The purpose of the project is to prove the concept of using multiple technologies for distributed programming. With this project, we have built a full web server with 2 backends, 1 frontend and 1 database to showcase the problems. 
+L'objectif de ce projet était de montrer le concepet d'utilisation de plusieures technologies pour une programmation distribuée. A travers ce projet, on a pu construire un full web serveur avec 2 backends , 1 frontend et une base de données en utilisant les technologies étudiées dans le cours 
 
-Each of it is under a Docker container and defined to comunicate with each other using Docker Compose.
+chaque service tourne dans un docker container avec docker compose qui définit et établit la communication entre chaque service
 
-The front end fetch from 2 backends with 2 independent tasks. 
+Le front end récupére des données depuis 2 backends avec 2 taches indépéndantes. 
 
 ![Show weather module](assets/images/show_weather_module.png)
 
@@ -52,16 +52,17 @@ Et pour cela nous avons créé une application qui affiche la température pour 
 
 ![Show record module](assets/images/show_record_module.png)
 
-# Introduction about the technology
+# Introduction des technologies utilisées 
 
 ## Django
-Django is a backend framework written in Python
+Django est un framework web Python de haut niveau qui encourage le développement rapide et une conception propre et pragmatique.
 
 ## React.JS
-Please write some here
+Une bibliothèque JavaScript pour la création d'interfaces utilisateurs
+
 
 ## PostgreSQL
-Please write some here
+PostgreSQL est une base de données objet-relationnelle puissante et open source.
 
 
 # Architecture de l’application
@@ -70,13 +71,18 @@ Pour expliquer le fonctionnement de notre application web, nous avons schématis
 ![Architecture de l’application](assets/images/program_architechture.png)
 
 
-Notre application web  utilisant le web service REST est composé de :
+Notre application web est composé de :
 
 - Un front end ( qui nous sert de navigateur) codé en REACT JS ,
 - Deux back end : un qui sert à stocker et à extraire les données depuis notre base donnée codé en python en utilisant DJANGO , le deuxième qui sert à récupérer la température d’une autre API codé en python en utilisant DJANGO 
 - Base de donnée POSTGRESQL
 
-# Distributed programming used in the project
+# Technologies de programmation distribuée utilisées dans ce projet:
+
+## Micro-services 
+Concrètement, les microservices sont une méthode de développement logiciel permettant de concevoir une application comme un ensemble de services modulaires. Chaque module répond à un objectif métier spécifique et communique avec les autres modules.
+
+Dans notre projet, on a utilisé deux backend d'ou la notion microservices
 
 ## Docker
 Les conteneurs fonctionnent un peu comme les VM, mais de manière beaucoup plus spécifique et granulaire. Ils isolent une seule application et ses dépendances - toutes les bibliothèques logicielles externes dont l'application a besoin pour fonctionner - à la fois du système d'exploitation sous-jacent et des autres conteneurs.
